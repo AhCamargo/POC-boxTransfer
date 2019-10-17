@@ -1,0 +1,42 @@
+.comet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 30px;
+    background: #C0E0EA;
+    position: absolute;
+    animation: comet-h-movement 1s ease-in infinite;
+  }
+  .comet:before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #C0E0EA;
+    left: 50px;
+    top: -100px;
+  }
+  .comet:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #C0E0EA;
+    left: 150px;
+    top: 100px;
+  }
+
+  @keyframes comet-h-movement {
+    0% {
+      margin-left: 100%;
+      opacity: 1;
+      transform: scale(2);
+    }
+    100% {
+      margin-left: -20%;
+      opacity: 0;
+      transform: scale(1);
+    }
+  }
