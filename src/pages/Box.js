@@ -95,7 +95,7 @@ export default class Box extends Component {
                 open={open}
                 message={`Registro-presenca-outubro.xls`}
                 onRequestClose={this.handleRequestClose}
-                style={{ left: "88%",  }}
+                style={{ left: "88%" }}
                 bodyStyle={{backgroundColor:"rgba(255, 255, 255, 0.9)" }}
                 contentStyle={{ color: "black" }}    
             />        
