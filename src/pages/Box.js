@@ -16,7 +16,7 @@ export default class Box extends Component {
         this.state = {
           open: false,
           percentage: 0,
-          total: 0,
+          total: 100,
           errors: 0,
           endpoint: 'http://localhost:8081',
           personId: "007",
@@ -24,7 +24,8 @@ export default class Box extends Component {
       }
     
     componentDidMount() {
-        const { endpoint, personId } = this.state;
+        const { endpoint, personId, total } = this.state;
+        let { percentage } = this.state;
         const socket = socketIOClient(endpoint, { query: {  socketId: personId }});
         socket.on('connect', () =>  console.log("Tô logado"));
         
@@ -35,7 +36,14 @@ export default class Box extends Component {
             errors: progress.errors,
             success: progress.success
         }, console.log(progress)))
-
+        
+        // Only for test of progress
+        this.timer = setInterval(() =>  {
+            this.setState({
+              open: true,
+              percentage: percentage < total ? percentage++ : percentage
+            })
+           }, 1000);
     }
     
     handleSocketShutdown = () => {
@@ -66,13 +74,13 @@ export default class Box extends Component {
     return (
     <div>{open === true ?
         <React.Fragment>
-            <div>
-            </div>
+            
             <Snackbar
                 open={open}
                 message={`Enviando ${percentage} arquivo de ${total}`}
                 onRequestClose={this.handleRequestClose}
-                style={{ left: "88%", height: "19%" }}     
+                style={{ left: "88%", height: "18.5%",  transform: 'translate(-50%, 0px)' }}
+                contentStyle={{ opacity: '1' }}      
             />                
             <Snackbar
                 open={open}
@@ -80,7 +88,7 @@ export default class Box extends Component {
                 message={`Processando`}
                 onRequestClose={this.handleRequestClose}
                 bodyStyle={{backgroundColor: "#e4e4e4"}}
-                style={{ left: "88%", height: "13%" }}
+                style={{ left: "88%", height: "12.5%" }}
                 contentStyle={{ color: "black" }}   
             />
             <Snackbar
