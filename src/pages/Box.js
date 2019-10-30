@@ -79,7 +79,7 @@ export default class Box extends Component {
                 open={open}
                 message={`Enviando ${percentage} arquivo de ${total}`}
                 onRequestClose={this.handleRequestClose}
-                style={{ left: "88%", height: "18.5%",  transform: 'translate(-50%, 0px)' }}
+                style={{ left: "88%", height: "18.5%", visibility: 'visible',  transform: 'translate(-50%, 0px)' }}
                 contentStyle={{ opacity: '1' }}      
             />                
             <Snackbar
